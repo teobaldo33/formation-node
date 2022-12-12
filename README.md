@@ -4,9 +4,9 @@ Vous trouverez dans ce repo, a la fois les exemples de cours et corrections comp
 
 ## Liens Utiles
 
-https://nodejs.org/docs/latest/api/ \n
-https://expressjs.com/fr/api.html \n
-https://mongoosejs.com/docs/api.html \n
+https://nodejs.org/docs/latest/api/   
+https://expressjs.com/fr/api.html   
+https://mongoosejs.com/docs/api.html   
 
 Si vous souhaitez plus d'informations sur l'un des modules que nous avons utilisé durant la formation, n'hésitez pas a aller consulter leurs documentations.
 
