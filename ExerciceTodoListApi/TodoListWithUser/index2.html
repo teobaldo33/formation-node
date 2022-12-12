@@ -1,0 +1,59 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ma todolist en VueJS avec axios</title>
+    <!-- inclure les fichiers VueJS et axios -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Ma todolist</h1>
+      <ul>
+        <!-- afficher la liste des tâches à faire -->
+        <li v-for="task in tasks" v-text="task.name"></li>
+      </ul>
+      <input v-model="newTask" placeholder="Ajouter une nouvelle tâche">
+      <button v-on:click="addTask">Ajouter</button>
+    </div>
+    <script>
+      // créer une instance VueJS
+      var app = new Vue({
+        el: "#app",
+        data: {
+          tasks: [],
+          newTask: ""
+        },
+        created: function() {
+          // lorsque l'application est créée,
+          // charger les tâches à faire depuis l'API
+          this.loadTasks();
+        },
+        methods: {
+          // charger les tâches à faire depuis l'API
+          loadTasks: function() {
+            var self = this;
+            axios.get("http://localhost:5000/tasks").then(function(response) {
+              self.tasks = response.data;
+            });
+          },
+          // ajouter une tâche à la liste
+          addTask: function() {
+            var self = this;
+            axios
+              .post("https://my-todolist-api.com/tasks", {
+                name: this.newTask
+              })
+              .then(function(response) {
+                // ajouter la nouvelle tâche à la liste
+                self.tasks.push(response.data);
+                self.newTask = "";
+              });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
